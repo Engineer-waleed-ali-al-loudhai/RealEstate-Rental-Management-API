@@ -57,7 +57,7 @@ namespace RealEstateApi.Controllers
                 Status = PropertyStatus.Available
             };
 
-            _context.properties.Add(property);
+            _context.Properties.Add(property);
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "تم إضافة العقار وصورته بنجاح تام في النظام المدفوع!", propertyId = property.Id, path = property.ImagePath });
@@ -68,7 +68,7 @@ namespace RealEstateApi.Controllers
         [Authorize]
         public async Task<IActionResult> GetAllProperties()
         {
-            var properties = await _context.properties.ToListAsync();
+            var properties = await _context.Properties.ToListAsync();
 
             // جلب رابط السيرفر الحالي تلقائياً (سواء كان localhost أو دومين على الإنترنت)
             var baseUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
